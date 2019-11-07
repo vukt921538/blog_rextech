@@ -91,7 +91,6 @@ def content(request, id):
         'profile_author': profile_author,
         'form_comment': form_comment,
         'list_comment': list_comment,
-        'new_list_1': new_list[0],
         'list.count': list.count, #Lưu ý: Muốn truyền được phải cùng tên biến với templates
 
     }
