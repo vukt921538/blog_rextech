@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block right-side %}
+<div class="main-wrapper">
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container">
+            <div class="item mb-5">
+                <div class="row">
+                    <div class="col-6">
+                            <h4>Đăng nhập</h4>
+                            <br>
+                            <form action="" method="post" novalidate>
+                                {% csrf_token %}
+                            {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                Tài khoản hoặc mật khẩu không chính xác !
+                            </div>
+                            {% endif %}
+                                {{form.username}}
+                                <br>
+                                {{form.password}}
+                                <br>
+                                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                            </form>
+                            <br>
+                        <hr>
+                        <small>Chưa có tài khoản ? <a href="{% url 'register' %}">Đăng kí</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="footer" style="position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #838a85;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-right: 10px;">
+    <div style="text-align: right;">
+            <br>
+            Copyright <b>©</b> 2019 <b style="font-family: 'Kanit', sans-serif;">All right Reverser</b> |</b> This website is make by @ <b style="font-family: 'Kanit', sans-serif;">KT Vũ</b> with <i class="fas fa-heart"></i> </div>
+          </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block right-side %}
+<div class="main-wrapper">
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="item mb-5">
+                    <div class="row">
+                        <div class="col-7">
+                        <h3>Đăng kí tài khoản</h3>
+                        <br>
+                            <form action="" method="post" novalidate>
+                                {% csrf_token %}
+                                
+                                        <div class="form-row">
+                                          <div class="col">
+                                              <h6>First name</h6>
+                                            {{form.f_name}}
+                                            {% if form.errors %}
+                                                {{form.f_name.errors}}
+                                            {% endif %}
+                                          </div>
+                                          <div class="col">
+                                                <h6>Last name</h6>
+                                            {{form.l_name}}
+                                            {% if form.errors %}
+                                                {{form.l_name.errors}}
+                                            {% endif %}
+                                          </div>
+                                        </div>
+                                <br>
+                                <h6>Username</h6>
+                                {{form.username}}
+                                <small class="help-block">{{form.username.help_text}}</small>
+                                {% if form.errors %}
+                                    {{form.username.errors}}
+                                {% endif %}
+                                <br>
+                                <br>
+                                <h6>Password</h6>
+                                {{form.password1}}
+                                <small class="help-block">{{form.password1.help_text}}</small>
+                                {% if form.errors %}
+                                    {{form.password1.errors}}
+                                {% endif %}
+                                <br>
+                                <br>
+                                <h6>Password confirmation</h6>
+                                {{form.password2}}
+                                <small class="help-block">{{form.password2.help_text}}</small>
+                                {% if form.errors %}
+                                    {{form.password2.errors}}
+                                {% endif %}
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Đăng kí tài khoản</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="footer" style="position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #838a85;
+    text-align: center;
+    padding-bottom: 15px;">
+    <div style="text-align: right; padding-right: 8px;">
+            <br>
+            Copyright <b>©</b> 2019 <b style="font-family: 'Kanit', sans-serif;">All right Reverser</b> |</b> This website is make by @ <b style="font-family: 'Kanit', sans-serif;">KT Vũ</b> with <i class="fas fa-heart"></i> <br> Ver 1.0 Alpha test </div>
+          </div>
+</div>
+{% endblock %}

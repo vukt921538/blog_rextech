@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block right-side %}
+<div class="main-wrapper">
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="item mb-5">
+                    <div class="row">
+                        <div class="col-10">
+                                <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8 col-md-6">
+                                                    <h3 class="mb-0 text-truncated">{{user_profile.profile.f_name}} {{user_profile.profile.l_name}}</h3>
+                                                    <p class="lead">{{user_profile.profile.job}}</p>
+                                                    <br>
+                                                    <p>
+                                                        {{user_profile.profile.descriptions}}
+                                                    </p>
+                                                    <b>Email: </b>{{user_profile.profile.email}}
+                                                    <br>
+                                                    <b>Username: </b>{{user_profile.username}}
+                                                    <br>
+                                                    <b>Địa chỉ: </b>{{user_profile.profile.address}}
+                                                </div>
+                                                <br>
+                                                <div class="col-12 col-lg-4 col-md-6 text-center" style="padding-top: 20px;">
+                                                    <img src="{{user_profile.profile.img.url}}" alt="" class="mx-auto rounded-circle img-fluid">
+                                                    <br>
+                                                    <ul class="list-inline ratings text-center" title="Ratings">
+                                                        <br>
+                                                        <div class="btn-group dropright">
+                                                            <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                              Change avatar
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <div class="form-group p-4">
+                                                                    <form action="" method="post" enctype="multipart/form-data">
+                                                                        {% csrf_token %}
+                                                                        {{form_avata}}
+                                                                        <button type="submit" class="btn btn-primary">Change</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <button class="btn btn-block btn-outline-success"><span class="fas fa-comment-dots"></span> Messages</button>
+                                                </div>
+                                                {% if user.is_authenticated %}
+                                                <div class="col-12 col-lg-4">
+                                                    <a class="btn btn-outline-info btn-block" href="{% url 'update_profile' user.id %}" role="button"><i class="fas fa-user-edit"></i> Cập nhật profile </a>
+                                                </div>
+                                                {% endif %}
+                                                <div class="col-12 col-lg-4">
+                                                    <a class="btn btn-outline-primary btn-block" href="{% url 'logout' %}" role="button"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>
+                                                </div>
+                                                <!--/col-->
+                                            </div>
+                                            <!--/row-->
+                                        </div>
+                                        <!--/card-block-->
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+{% endblock %}

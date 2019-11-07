@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block right-side %}
+<div class="main-wrapper">
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+            <h6>
+            <a href="{% url 'content' reply_comment.post_id.id %}" style="text-decoration: none;"><i class="fas fa-long-arrow-alt-left"></i> Quay lại</a>
+            </h6>
+            <br>
+            <h5>Bình luận</h5>
+            <br>
+            <h5>
+            <b style="color: #42f5a7;"><a href="{% url 'profile' reply_comment.user_id.id %}">@{{reply_comment.user_id}}</a></b>
+            </h5>
+              {{reply_comment.comment_box}}
+            <br>
+            <hr>
+            <br>
+            <form action="" method="post">
+                    {% csrf_token %}
+                    {{reply_comment_label.as_p}}
+                    <button type="submit" class="btn btn-primary">Nhận xét</button>
+                </form>
+                <br>
+                <hr>
+
+            <h5> {{count }} trả lời bình luận :</h5>
+            {% for comment in reply_comment_comment %}
+                <b style="color: #42f5a7;"><a href="{% url 'profile' comment.user_ctc_id.id %}">@{{comment.user_ctc_id}}</a></b>
+                <br>
+                {{comment.comment_field}}
+                <br>
+                <small>{{comment.comment_ctc_time}}</small>
+                <br>
+                <br>
+
+            {% endfor %}
+        </div>
+    </article>
+</div>
+{% endblock %}

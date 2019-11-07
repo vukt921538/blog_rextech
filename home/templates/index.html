@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block right-side %}
+<div class="main-wrapper">
+    <section class="cta-section theme-bg-light py-5">
+        <div class="container text-center">
+            <h2 class="heading">Rextech - Diễn đàn công nghệ</h2>
+            <div class="intro"><b>Cuộc sống giờ đây gắn liền với công nghệ. Tất cả trong tầm tay bạn !</b> <br></div>
+            {% if user.is_authenticated %}
+            Cập nhật thông tin cá nhân để có thể tạo bài viết
+            <form class="signup-form form-inline justify-content-center pt-3">
+                <a class="btn btn-primary" href="{% url 'update_profile' user.id %}" role="button">Cập nhật ngay</a>
+            </form>
+            {% else %}
+            Đăng kí ngay để nhận các bài viết mới nhất.
+            <form class="signup-form form-inline justify-content-center pt-3">
+                    <a class="btn btn-primary" href="{% url 'register' %}" role="button">Đăng kí</a>
+            </form>
+            {% endif %}
+        </div><!--//container-->
+    </section>
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container">
+            <div class="item mb-5">
+                {% if user.is_authenticated %}
+                <div style="padding-bottom: 20px;">
+                    <a class="btn btn-outline-info" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fas fa-plus"></i> Tạo bài viết</a>
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <br>
+                        <div class="card card-body">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            {{form.as_p}}
+                            <div style="text-align: right;">
+                                <button type="submit" class="btn btn-outline-primary">Đăng bài</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                {% endif %}
+                <h6>Bài viết gần đây <span class="badge badge-secondary">New</span></h6>
+                {% for post in posts %}
+                <br>
+            <div>
+                <div class="media">
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{post.img_user_url}}" alt="image">
+                    <div class="media-body">
+                            <a href="{% url 'profile' post.profile.id %}" class="badge badge-danger"><i class="fas fa-user-clock"></i> {{post.author}}</a>
+                            <h4 class="title mb-1"> <a href="{% url 'content' post.id %}">{{post}}</a></h4>
+                        <div class="meta mb-1"><span class="date">{{post.date_published}}</span><span class="time">5 min read</span><span class="comment"><a href="#">8 comments</a></span></div>
+                        <div class="intro">
+                            <span>{{post.content|truncatewords:30}}</span>
+                            <br>
+                            <a class="more-link" href="{% url 'content' post.id %}">Read more &rarr;</a>
+                        </div>
+                    </div><!--//media-body-->
+                </div><!--//media-->
+            </div><!--//item-->
+            <br>
+            {% endfor %}
+            
+            
+            <nav class="blog-nav nav nav-justified my-5">
+              <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+              <a class="nav-link-next nav-item nav-link rounded" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            </nav>
+            
+        </div>
+    </section>
+
+</div><!--//main-wrapper-->
+
+
+
+
+<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
+{% endblock %}

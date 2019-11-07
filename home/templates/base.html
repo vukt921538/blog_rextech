@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Rextech Blog</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="https://fonts.googleapis.com/css?family=Courgette|Fugaz+One|Lobster&display=swap" rel="stylesheet">    <!-- FontAwesome JS-->
+	<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text|Kanit&display=swap" rel="stylesheet">
+	<script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Big+Shoulders+Display|Darker+Grotesque|Lobster|Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pattaya&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+			    <!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="{% static 'home/assets/css/theme-2.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<style>
+					body{
+				margin-top:20px;
+				background:#FDFDFD;
+			}
+			@media (min-width: 0) {
+				.g-mr-15 {
+					margin-right: 1.07143rem !important;
+				}
+			}
+			@media (min-width: 0){
+				.g-mt-3 {
+					margin-top: 0.21429rem !important;
+				}
+			}
+
+			.g-height-50 {
+				height: 50px;
+			}
+
+			.g-width-50 {
+				width: 50px !important;
+			}
+
+			@media (min-width: 0){
+				.g-pa-30 {
+					padding: 2.14286rem !important;
+				}
+			}
+
+			.g-bg-secondary {
+				background-color: #fafafa !important;
+			}
+
+			.u-shadow-v18 {
+				box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+			}
+
+			.g-color-gray-dark-v4 {
+				color: #777 !important;
+			}
+
+			.g-font-size-12 {
+				font-size: 0.85714rem !important;
+			}
+
+			.media-comment {
+				margin-top:20px
+			}
+
+                                    	
+	</style>
+</head> 
+
+<body>
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="{% url 'home' %}" style="font-family: 'Courgette', cursive;"> RexTech.</a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 mx-auto" src="{% static 'logo.png' %}" alt="image" >			
+					
+					<div class="bio mb-3"><b>Blog for Developer and Programmer</b><br><a href="{% url 'about' %}">Find out more about page</a></div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-fw"></i></a></li>
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				{% if user.is_authenticated %}
+				<div class="my-2 my-md-1">
+						<div class="btn-group dropright">
+								<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-user"></i> {{user}}
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{% url 'profile' user.id %}" role="button"><button class="btn btn-outline-success">Thông tin cá nhân</button></a>
+									<a class="dropdown-item" href="{% url 'logout' %}" role="button"><button class="btn btn-outline-success">Đăng xuất</button></a>
+								</div>
+							  </div>
+					</div>
+				{% else %}
+				<div class="my-2 my-md-1">
+						<a class="btn btn-primary" href="{% url 'login' %}">Đăng nhập</a>
+					</div>
+				{% endif %}
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home fa-fw mr-2"></i>Trang chủ<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'about' %}"><i class="fas fa-user fa-fw mr-2"></i>Giới thiệu</a>
+					</li>
+				</ul>
+				
+		
+			</div>
+		</nav>
+    </header>
+    
+	{% block right-side %}
+	
+	{% endblock %}
+	   
+	<div id="config-panel" class="config-panel d-none d-lg-block">
+			<div class="panel-inner">
+				<a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6" ></i></a>
+				<h5 class="panel-title">Đổi màu giao diện</h5>
+				<ul id="color-options" class="list-inline mb-0">
+					<li class="theme-1 active list-inline-item"><a data-style="{% static 'home/assets/css/theme-1.css' %}" href="#"></a></li>
+					<li class="theme-2  list-inline-item"><a data-style="{% static 'home/assets/css/theme-2.css' %}" href="#"></a></li>
+					<li class="theme-3  list-inline-item"><a data-style="{% static 'home/assets/css/theme-3.css' %}" href="#"></a></li>
+					<li class="theme-4  list-inline-item"><a data-style="{% static 'home/assets/css/theme-4.css' %}" href="#"></a></li>
+					<li class="theme-5  list-inline-item"><a data-style="{% static 'home/assets/css/theme-5.css' %}" href="#"></a></li>
+					<li class="theme-6  list-inline-item"><a data-style="{% static 'home/assets/css/theme-6.css' %}" href="#"></a></li>
+					<li class="theme-7  list-inline-item"><a data-style="{% static 'home/assets/css/theme-7.css' %}" href="#"></a></li>
+					<li class="theme-8  list-inline-item"><a data-style="{% static 'home/assets/css/theme-8.css' %}" href="#"></a></li>
+				</ul>
+				<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+			</div><!--//panel-inner-->
+	</div><!--//configure-panel-->
+    <!-- Javascript -->          
+    <script src="{% static 'home/assets/plugins/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'home/assets/plugins/popper.min.js' %}"></script> 
+    <script src="{% static 'home/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script> 
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="{% static 'home/assets/js/demo/style-switcher.js' %}"></script>     
+    
+
+</body>
+</html> 
+
