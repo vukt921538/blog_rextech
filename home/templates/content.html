@@ -5,12 +5,12 @@
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2" style="font-family: 'Pattaya', sans-serif;">{{post.title}}</h2>
+				    <h2 class="title mb-2" style="font-family: 'Montserrat', sans-serif;">{{post.title}}</h2>
 				    <div class="meta mb-3"><span class="date">{{post.date_published}}</span>Post by : <span class="comment"><a href="{% url 'profile' profile_author.id %}"><b>{{post.author}}</b></a></span></div>
 			    </header>
 			    <div class="blog-post-body">
 				    
-					<p>{{post.content}}</p>
+					<p style="font-family: 'Open Sans', sans-serif;">{{post.content}}</p>
 				</div>
 				<br>
 				<hr>
