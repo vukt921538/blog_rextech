@@ -40,7 +40,7 @@
                 </div>
                 {% endif %}
                 <h6>Bài viết gần đây <span class="badge badge-secondary">New</span></h6>
-                {% for post in posts %}
+                {% for post in post_list %}
                 <br>
             <div>
                 <div class="media">
@@ -59,18 +59,19 @@
             </div><!--//item-->
             <br>
             {% endfor %}
-            
-            
             <nav class="blog-nav nav nav-justified my-5">
-              <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-              <a class="nav-link-next nav-item nav-link rounded" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            {% if post_list.has_previous %}
+            <a class="nav-link-prev nav-item nav-link rounded-left" href="?page={{ post_list.previous_page_number }}">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+            {% endif %}
+            {% if post_list.has_next %}
+            <a class="nav-link-next nav-item nav-link rounded-right" href="?page={{ post_list.next_page_number }}">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            {% endif %}
             </nav>
-            
         </div>
     </section>
 
 </div><!--//main-wrapper-->
-
+<!-- <a class="nav-link-next nav-item nav-link rounded" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a> -->
 
 
 

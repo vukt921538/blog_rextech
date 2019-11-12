@@ -22,7 +22,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_published = models.DateTimeField(auto_now=True)
-    cover = models.ImageField(upload_to='cover', default='cover/cover_default.jpg', blank=True)
+    # cover = models.ImageField(upload_to='cover', default='cover/cover_default.jpg', blank=True)
 
     def __str__(self):
         return self.title

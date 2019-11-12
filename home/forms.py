@@ -59,14 +59,10 @@ class AvataForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     title = forms.CharField(label='Tiêu đề', widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(label='Nội dung', widget=forms.Textarea(attrs={'class': 'form-control'}))
-    cover = forms.ImageField(label='Thêm ảnh', required=False)
     class Meta:
         model = Post
         fields = '__all__'
-        widgets = {
-            'cover': forms.HiddenInput(),
-            'author': forms.HiddenInput()
-        }
+        widgets = {'author': forms.HiddenInput()}
 
 class CommentForm(forms.ModelForm):
     comment_box = forms.CharField(label='Để lại bình luận', widget=forms.Textarea(attrs={'class': 'form-control',

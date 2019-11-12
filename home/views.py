@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
-from home.forms import RegistrationForm, UpdateProfileForm, AvataForm, PostForm, CommentForm, CTCForm
+from home.forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 # from django.contrib.auth.forms import UserChangeForm
-from .models import Profile, Post, CommentPost, Comment_to_comment
+from .models import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
     posts = Post.objects.all().order_by('-date_published')
+    paginator = Paginator(posts, 5) #Show 5 posts per page
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -24,11 +26,16 @@ def home(request):
         post.img_user_url = Profile.objects.get(user=post.author).img.url
         post.profile = Profile.objects.get(user=post.author)
         print(post.profile.id)
+    
+    #paginator
+    page = request.GET.get('page')
+    post_list = paginator.get_page(page)
     context = {
         'posts': posts,
         'post.img_user_url': post.img_user_url,
         'form': form,
-        'post.profile': post.profile
+        'post.profile': post.profile,
+        'post_list': post_list
     }
     print(post.img_user_url)
     return render(request, 'index.html', context)

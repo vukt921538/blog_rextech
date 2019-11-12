@@ -42,7 +42,7 @@
 							<ul class="list-inline d-sm-flex my-0">
 									<li class="list-inline-item ml-auto">
 									{% if user.is_authenticated %}
-									<a href="#" aria-pressed="true" style="text-decoration: none;"><span class="badge badge-primary">{{list.count}}</span> Nhận xét <i class="fas fa-comments"></i></a>
+									<a href="{% url 'reply_comment' list.id %}" aria-pressed="true" style="text-decoration: none;"><span class="badge badge-primary">{{list.count}}</span> Nhận xét <i class="fas fa-comments"></i></a>
 									{% endif %}
 									</li>
 								</ul>
