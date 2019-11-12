@@ -63,7 +63,10 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        widgets = {'author': forms.HiddenInput(), 'cover': forms.HiddenInput()}
+        widgets = {
+            'cover': forms.HiddenInput(),
+            'author': forms.HiddenInput()
+        }
 
 class CommentForm(forms.ModelForm):
     comment_box = forms.CharField(label='Để lại bình luận', widget=forms.Textarea(attrs={'class': 'form-control',
