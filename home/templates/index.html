@@ -44,7 +44,7 @@
                 <br>
             <div>
                 <div class="media">
-                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{post.img_user_url}}" alt="image">
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{post.img_user_url}}" alt="image" style="">
                     <div class="media-body">
                             <a href="{% url 'profile' post.profile.id %}" class="badge badge-danger"><i class="fas fa-user-clock"></i> {{post.author}}</a>
                             <h4 class="title mb-1"> <a href="{% url 'content' post.id %}" style="font-family: 'Montserrat', sans-serif;">{{post}}</a></h4>
@@ -61,10 +61,10 @@
             {% endfor %}
             <nav class="blog-nav nav nav-justified my-5">
             {% if post_list.has_previous %}
-            <a class="nav-link-prev nav-item nav-link rounded-left" href="?page={{ post_list.previous_page_number }}">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+            <a class="nav-link-prev nav-item nav-link rounded-left" href="?page={{ post_list.previous_page_number }}">Trang trước<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
             {% endif %}
             {% if post_list.has_next %}
-            <a class="nav-link-next nav-item nav-link rounded-right" href="?page={{ post_list.next_page_number }}">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            <a class="nav-link-next nav-item nav-link rounded-right" href="?page={{ post_list.next_page_number }}">Trang tiếp<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
             {% endif %}
             </nav>
         </div>

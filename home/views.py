@@ -32,7 +32,7 @@ def home(request):
     post_list = paginator.get_page(page)
     context = {
         'posts': posts,
-        'post.img_user_url': post.img_user_url,
+        # 'post.img_user_url': post.img_user_url,
         'form': form,
         'post.profile': post.profile,
         'post_list': post_list
@@ -86,23 +86,22 @@ def content(request, id):
         
     profile_author = Profile.objects.get(user=post.author)
     list_comment = CommentPost.objects.filter(post_id=post).order_by('-comment_time')
-    for list in list_comment:
-        list.count = Comment_to_comment.objects.filter(comment_id=list).order_by('-comment_ctc_time').count()
-        print('LIST COMMENT: ', list.count)
-    print('arr:', list_comment)
+
+    # Check if not comment in post
     
-    new_list = [Comment_to_comment.objects.filter(comment_id=comment).order_by('-comment_ctc_time').count() for comment in list_comment]
     context = {
         'post': post,
         'profile': profile,
         'profile_author': profile_author,
         'form_comment': form_comment,
         'list_comment': list_comment,
-        'list.count': list.count, #Lưu ý: Muốn truyền được phải cùng tên biến với templates
-
     }
-    # Lấy comment từ post đó xong rồi lấy comment_to_comment từ comment
-    # Show ra đc các comment_to_comment của Post đó:
+    if not list_comment:
+        # DO somethings
+        pass
+    else:
+        for lst in list_comment:
+            lst.count_1 = Comment_to_comment.objects.filter(comment_id=lst).order_by('-comment_ctc_time').count()
     return render(request, 'content.html', context)
 
 def about(request):
